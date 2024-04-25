@@ -1,7 +1,14 @@
 import PropTypes from "prop-types";
 import { Card, ListGroup } from "react-bootstrap";
 import { CiLocationOn, CiMobile3 } from "react-icons/ci";
-import { FaAddressCard, FaChrome, FaCity, FaStreetView } from "react-icons/fa";
+import {
+  FaAddressCard,
+  FaChrome,
+  FaCity,
+  FaStreetView,
+  FaUser,
+} from "react-icons/fa";
+import { IoMailOpenSharp } from "react-icons/io5";
 
 const SingleUser = ({ user }) => {
   return (
@@ -9,8 +16,14 @@ const SingleUser = ({ user }) => {
       <Card>
         <Card.Body>
           <Card.Title>{user.name}</Card.Title>
-          <Card.Subtitle>{user.username}</Card.Subtitle>
-          <Card.Text>Email: {user.email}</Card.Text>
+          <Card.Subtitle>
+            <FaUser fontSize="20px" style={{ marginRight: "10px" }} />
+            {user.username}
+          </Card.Subtitle>
+          <Card.Text>
+            <IoMailOpenSharp fontSize="20px" style={{ marginRight: "10px" }} />{" "}
+            {user.email}
+          </Card.Text>
         </Card.Body>
 
         <ListGroup style={{ padding: "15px", margin: "10px" }}>
