@@ -1,14 +1,17 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useEffect, useReducer } from "react";
 import { handleUser } from "./Reducer";
 import PropTypes from "prop-types";
 import { readAllData } from "../API/crud";
 
-const userContext = createContext();
+export const userContext = createContext();
 
 const Context = ({ children }) => {
   const [state, dispatch] = useReducer(handleUser, {
     users: [],
     newUser: [],
+    loading: true,
+    error: null,
   });
 
   useEffect(() => {
