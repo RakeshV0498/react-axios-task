@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Card, ListGroup } from "react-bootstrap";
+import { Button, Card, ListGroup } from "react-bootstrap";
 import { CiLocationOn, CiMobile3 } from "react-icons/ci";
 import {
   FaAddressCard,
@@ -13,7 +13,7 @@ import { IoMailOpenSharp } from "react-icons/io5";
 const SingleUser = ({ user }) => {
   return (
     <>
-      <Card>
+      <Card className="user-card">
         <Card.Body>
           <Card.Title>{user.name}</Card.Title>
           <Card.Subtitle>
@@ -25,7 +25,6 @@ const SingleUser = ({ user }) => {
             {user.email}
           </Card.Text>
         </Card.Body>
-
         <ListGroup style={{ padding: "15px", margin: "10px" }}>
           <ListGroup.displayName>
             <FaAddressCard fontSize="40px" style={{ marginRight: "10px" }} />{" "}
@@ -44,7 +43,7 @@ const SingleUser = ({ user }) => {
             {user.address.zipcode}
           </ListGroup.Item>
           <ListGroup.Item>
-            <CiMobile3 fontSize="20px" />
+            <CiMobile3 fontSize="20px" style={{ marginRight: "10px" }} />
             {user.phone}
           </ListGroup.Item>
         </ListGroup>
@@ -54,6 +53,10 @@ const SingleUser = ({ user }) => {
             <FaChrome fontSize="20px" style={{ marginRight: "10px" }} />
             Visit Me!
           </Card.Link>
+        </Card.Body>
+        <Card.Body className="btn-container">
+          <Button variant="primary">Edit</Button>
+          <Button variant="danger">Delete</Button>
         </Card.Body>
       </Card>
     </>
