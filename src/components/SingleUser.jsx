@@ -10,29 +10,26 @@ const SingleUser = ({ user }) => {
         <Card.Body>
           <Card.Title>{user.name}</Card.Title>
           <Card.Subtitle>{user.username}</Card.Subtitle>
+          <Card.Text>Email: {user.email}</Card.Text>
         </Card.Body>
-        <ListGroup>
-          <ListGroup.Item>Email: {user.email}</ListGroup.Item>
+
+        <ListGroup style={{ padding: "15px", margin: "10px" }}>
           <ListGroup.displayName>
-            <h4>
-              <FaAddressCard fontSize="20px" style={{ marginRight: "10px" }} />{" "}
-              Address
-            </h4>
-            <ListGroup>
-              <ListGroup.Item>
-                <FaStreetView fontSize="20px" style={{ marginRight: "10px" }} />
-                {user.address.street}
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <FaCity fontSize="20px" style={{ marginRight: "10px" }} />
-                {user.address.city}
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <CiLocationOn fontSize="20px" style={{ marginRight: "10px" }} />
-                {user.address.zipcode}
-              </ListGroup.Item>
-            </ListGroup>
+            <FaAddressCard fontSize="40px" style={{ marginRight: "10px" }} />{" "}
+            <strong>Address</strong>
           </ListGroup.displayName>
+          <ListGroup.Item>
+            <FaStreetView fontSize="20px" style={{ marginRight: "10px" }} />
+            {user.address.street}
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <FaCity fontSize="20px" style={{ marginRight: "10px" }} />
+            {user.address.city}
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <CiLocationOn fontSize="20px" style={{ marginRight: "10px" }} />
+            {user.address.zipcode}
+          </ListGroup.Item>
           <ListGroup.Item>
             <CiMobile3 fontSize="20px" />
             {user.phone}
