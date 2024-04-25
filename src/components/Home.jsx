@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { userContext } from "../Context/Context";
 import { Container } from "react-bootstrap";
+import SingleUser from "./SingleUser";
 
 const Home = () => {
   const { state } = useContext(userContext);
@@ -30,7 +31,7 @@ const Home = () => {
   return (
     <Container>
       {users.map((user) => (
-        <h1 key={user.id}>{user.name}</h1>
+        <SingleUser key={user.id} user={user} />
       ))}
     </Container>
   );
