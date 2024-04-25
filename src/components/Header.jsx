@@ -1,4 +1,5 @@
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -6,10 +7,12 @@ const Header = () => {
       <Navbar bg="light" data-bs-theme="light">
         <Container>
           <Navbar.Brand>
-            <a href="#">MyYSpace</a>
+            <Link to="/">Admin Pod</Link>
           </Navbar.Brand>
           <Nav>
-            <Button variant="primary">Create an Account</Button>
+            <Button variant="primary">
+              <Link to="/create">Create an Account</Link>
+            </Button>
           </Nav>
         </Container>
       </Navbar>
