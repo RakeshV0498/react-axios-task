@@ -27,8 +27,6 @@ export const handleUser = (state, action) => {
         error: action.payload,
       };
     case "Add_New_User":
-      console.log("Action Field:", action.field);
-      console.log("Action Value:", action.value);
       // Handle address fields separately
       if (action.field.startsWith("address.")) {
         const addressField = action.field.split(".")[1];

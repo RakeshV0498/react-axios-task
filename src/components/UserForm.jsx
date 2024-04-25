@@ -5,27 +5,7 @@ import { handleUser, initialState } from "../Context/Reducer";
 const UserForm = () => {
   const [formData, dispatch] = useReducer(handleUser, initialState);
 
-  // const handleChange = (field, value) => {
-  //   // Check if the field is part of the address
-  //   if (field.startsWith("address.")) {
-  //     console.log(value);
-  //     const addressField = field.split(".")[1]; // Get the address field (e.g., street, city, zip)
-  //     dispatch({
-  //       type: "Add_New_User",
-  //       field: {
-  //         ...formData,
-  //         address: { ...formData.address, [addressField]: value },
-  //       },
-  //     });
-  //   } else {
-  //     console.log(value);
-  //     dispatch({ type: "Add_New_User", [field]: value });
-  //   }
-  // };
-
   const handleChange = (field, value) => {
-    console.log("Field:", field);
-    console.log("Value:", value);
     dispatch({ type: "Add_New_User", field, value });
   };
 
