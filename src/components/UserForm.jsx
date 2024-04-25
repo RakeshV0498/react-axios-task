@@ -1,6 +1,9 @@
+/* eslint-disable react-refresh/only-export-components */
 import { useReducer } from "react";
 import { Button, Container, Form, InputGroup } from "react-bootstrap";
 import { handleUser, initialState } from "../Context/Reducer";
+
+export const formData = initialState;
 
 const UserForm = () => {
   const [formData, dispatch] = useReducer(handleUser, initialState);
@@ -11,7 +14,6 @@ const UserForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
   };
 
   return (
