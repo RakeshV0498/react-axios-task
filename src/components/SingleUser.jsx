@@ -32,15 +32,15 @@ const SingleUser = ({ user }) => {
           </ListGroup.displayName>
           <ListGroup.Item>
             <FaStreetView fontSize="20px" style={{ marginRight: "10px" }} />
-            {user.address.street}
+            {user.street}
           </ListGroup.Item>
           <ListGroup.Item>
             <FaCity fontSize="20px" style={{ marginRight: "10px" }} />
-            {user.address.city}
+            {user.city}
           </ListGroup.Item>
           <ListGroup.Item>
             <CiLocationOn fontSize="20px" style={{ marginRight: "10px" }} />
-            {user.address.zipcode}
+            {user.zipcode}
           </ListGroup.Item>
           <ListGroup.Item>
             <CiMobile3 fontSize="20px" style={{ marginRight: "10px" }} />

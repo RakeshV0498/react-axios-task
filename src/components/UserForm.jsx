@@ -1,11 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-refresh/only-export-components */
-import { useEffect, useReducer } from "react";
+import { useContext, useEffect } from "react";
 import { Button, Container, Form, InputGroup } from "react-bootstrap";
-import { handleUser, initialState } from "../Context/Reducer";
+
 import { createUser, readAllData } from "../API/crud";
+import { userContext } from "../Context/Context";
+import { useNavigate } from "react-router-dom";
 
 const UserForm = () => {
-  const [formData, dispatch] = useReducer(handleUser, initialState);
+  const {
+    state: { formData },
+    dispatch,
+  } = useContext(userContext);
+
+  const navigate = useNavigate();
 
   const handleChange = (field, value) => {
     dispatch({ type: "Add_New_User", field, value });
@@ -13,12 +21,11 @@ const UserForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
     try {
       const result = await createUser(formData);
       console.log("Data Posted successfully:", result);
       const newData = await readAllData();
-      console.log(newData);
       dispatch({
         type: "FETCH_USERS_SUCCESS",
         payload: newData,
@@ -28,6 +35,7 @@ const UserForm = () => {
     }
 
     dispatch({ type: "Reset_Form" });
+    navigate("/");
   };
 
   useEffect(() => {
@@ -83,24 +91,22 @@ const UserForm = () => {
                 placeholder="street"
                 aria-label="street"
                 id="user-address-street"
-                value={formData.address.street || ""}
-                onChange={(e) => handleChange("address.street", e.target.value)}
+                value={formData.street || ""}
+                onChange={(e) => handleChange("street", e.target.value)}
               />
               <Form.Control
                 placeholder="city"
                 aria-label="city"
                 id="user-address-city"
-                value={formData.address.city || ""}
-                onChange={(e) => handleChange("address.city", e.target.value)}
+                value={formData.city || ""}
+                onChange={(e) => handleChange("city", e.target.value)}
               />
               <Form.Control
                 placeholder="zip-code"
                 aria-label="zip-code"
                 id="user-address-zip"
-                value={formData.address.zipcode || ""}
-                onChange={(e) =>
-                  handleChange("address.zipcode", e.target.value)
-                }
+                value={formData.zipcode || ""}
+                onChange={(e) => handleChange("zipcode", e.target.value)}
               />
             </InputGroup>
           </Form.Group>

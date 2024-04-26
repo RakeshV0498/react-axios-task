@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const url = "https://jsonplaceholder.typicode.com/users/";
+// const url = "https://jsonplaceholder.typicode.com/users/";
+const url = "https://65e294dfa8583365b31844f1.mockapi.io/users/";
 
 export const readAllData = async () => {
   try {
@@ -14,10 +15,7 @@ export const readAllData = async () => {
 
 export const createUser = async (data) => {
   try {
-    const response = await axios.post(
-      "https://jsonplaceholder.typicode.com/users",
-      data
-    );
+    const response = await axios.post(url, data);
     return response.data; // Assuming the API returns the created data
   } catch (error) {
     console.error("Error posting data:", error);

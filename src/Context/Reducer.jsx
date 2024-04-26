@@ -2,11 +2,9 @@ export const initialState = {
   name: "",
   username: "",
   email: "",
-  address: {
-    street: "",
-    city: "",
-    zipcode: "",
-  },
+  street: "",
+  city: "",
+  zipcode: "",
   phone: "",
   website: "",
 };
@@ -27,25 +25,13 @@ export const handleUser = (state, action) => {
         error: action.payload,
       };
     case "Add_New_User":
-      // Handle address fields separately
-      if (action.field.startsWith("address.")) {
-        const addressField = action.field.split(".")[1];
-        return {
-          ...state,
-          address: {
-            ...state.address,
-            [addressField]: action.value,
-          },
-        };
-      }
-      // For other fields, update directly
       return {
         ...state,
-        [action.field]: action.value,
+        formData: { ...state.formData, [action.field]: action.value },
       };
 
     case "Reset_Form":
-      return initialState;
+      return { ...state, formData: initialState };
 
     default:
       return state;

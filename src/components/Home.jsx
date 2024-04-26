@@ -3,6 +3,7 @@ import { userContext } from "../Context/Context";
 import { Container } from "react-bootstrap";
 import SingleUser from "./SingleUser";
 import "./styles.css";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { state } = useContext(userContext);
@@ -32,7 +33,9 @@ const Home = () => {
   return (
     <Container className="user-container">
       {users.map((user) => (
-        <SingleUser key={user.id} user={user} />
+        <Link key={user.id} to={`/users/${user.id}`}>
+          <SingleUser key={user.id} user={user} />
+        </Link>
       ))}
     </Container>
   );
