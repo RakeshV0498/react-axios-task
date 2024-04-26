@@ -14,17 +14,6 @@ import { useNavigate } from "react-router-dom";
 
 const SingleUser = ({ user }) => {
   const navigate = useNavigate();
-
-  // const handleEdit = async (userId) => {
-  //   try {
-  //     const response = await editUser(userId, { name: "Rakesh" });
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.error("Error deleting user:", error);
-  //   }
-  //   window.location.reload();
-  // };
-
   const handleDelete = async (userId) => {
     try {
       await deleteUser(userId);
