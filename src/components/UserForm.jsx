@@ -21,6 +21,7 @@ const UserForm = () => {
   const editMode = searchParams.get("edit") === "true";
   const userId = searchParams.get("userID");
 
+  // fucntion to fetch the data based on the user id
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -34,19 +35,22 @@ const UserForm = () => {
     fetchUserData();
   }, [userId]);
 
+  // Function to set the data from api call to the form
   useEffect(() => {
     if (initialUserData) {
-      console.log(initialUserData);
+      // Calling reducer function to set the data to the form
       dispatch({ type: "Set_Form_Data", formData: initialUserData });
     }
   }, [initialUserData]);
 
+  // Handling changes in the form fields
   const handleChange = (field, value) => {
     dispatch({ type: "Add_New_User", field, value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Checking if the submit is for edit or create
     if (editMode) {
       try {
         const response = await editUser(userId, formData);
@@ -64,6 +68,7 @@ const UserForm = () => {
         console.error("Failed to post data:", error);
       }
     }
+    // Displaying updated data after edit or create
     const newData = await readAllData();
     dispatch({
       type: "FETCH_USERS_SUCCESS",
