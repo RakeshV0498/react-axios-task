@@ -14,14 +14,18 @@ import { useNavigate } from "react-router-dom";
 
 const SingleUser = ({ user }) => {
   const navigate = useNavigate();
+
   const handleDelete = async (userId) => {
+    // Function to delete the user
     try {
+      // Calling deleteUser function Crud.js file
       await deleteUser(userId);
       alert(`Deleted ${user.name} from the portal`);
       console.log("User Deleted successfully");
     } catch (error) {
       console.error("Error deleting user:", error);
     }
+    // Reloading the browser to display the updated data
     window.location.reload();
   };
 
