@@ -1,13 +1,13 @@
 export const initialState = {
-  fullName: "",
-  userName: "",
+  name: "",
+  username: "",
   email: "",
   address: {
     street: "",
     city: "",
-    zip: "",
+    zipcode: "",
   },
-  mobileNumber: "",
+  phone: "",
   website: "",
 };
 

@@ -54,8 +54,8 @@ const UserForm = () => {
             <Form.Control
               type="text"
               placeholder="Please Enter Your Full Name"
-              value={formData.fullName || ""}
-              onChange={(e) => handleChange("fullName", e.target.value)}
+              value={formData.name || ""}
+              onChange={(e) => handleChange("name", e.target.value)}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="user-userName">
@@ -63,8 +63,8 @@ const UserForm = () => {
             <Form.Control
               type="text"
               placeholder="Please Enter Your user name"
-              value={formData.userName || ""}
-              onChange={(e) => handleChange("userName", e.target.value)}
+              value={formData.username || ""}
+              onChange={(e) => handleChange("username", e.target.value)}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="user-email">
@@ -97,8 +97,10 @@ const UserForm = () => {
                 placeholder="zip-code"
                 aria-label="zip-code"
                 id="user-address-zip"
-                value={formData.address.zip || ""}
-                onChange={(e) => handleChange("address.zip", e.target.value)}
+                value={formData.address.zipcode || ""}
+                onChange={(e) =>
+                  handleChange("address.zipcode", e.target.value)
+                }
               />
             </InputGroup>
           </Form.Group>
@@ -107,8 +109,8 @@ const UserForm = () => {
             <Form.Control
               type="text"
               placeholder="555-555-0121"
-              value={formData.mobileNumber || ""}
-              onChange={(e) => handleChange("mobileNumber", e.target.value)}
+              value={formData.phone || ""}
+              onChange={(e) => handleChange("phone", e.target.value)}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="user-link">
