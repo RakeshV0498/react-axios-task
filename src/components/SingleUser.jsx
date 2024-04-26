@@ -9,18 +9,21 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { IoMailOpenSharp } from "react-icons/io5";
-import { deleteUser, editUser } from "../API/crud";
+import { deleteUser } from "../API/crud";
+import { useNavigate } from "react-router-dom";
 
 const SingleUser = ({ user }) => {
-  const handleEdit = async (userId) => {
-    try {
-      const response = await editUser(userId, { name: "Rakesh" });
-      console.log(response);
-    } catch (error) {
-      console.error("Error deleting user:", error);
-    }
-    window.location.reload();
-  };
+  const navigate = useNavigate();
+
+  // const handleEdit = async (userId) => {
+  //   try {
+  //     const response = await editUser(userId, { name: "Rakesh" });
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.error("Error deleting user:", error);
+  //   }
+  //   window.location.reload();
+  // };
 
   const handleDelete = async (userId) => {
     try {
@@ -80,7 +83,9 @@ const SingleUser = ({ user }) => {
           <Button
             variant="primary"
             onClick={() => {
-              handleEdit(user.id);
+              navigate(`/create?edit=true&userID=${user.id}`, {
+                state: { user },
+              });
             }}
           >
             Edit

@@ -30,6 +30,21 @@ export const handleUser = (state, action) => {
         formData: { ...state.formData, [action.field]: action.value },
       };
 
+    case "Set_Form_Data":
+      console.log(state);
+      return {
+        ...state,
+        formData: action.formData,
+      };
+    case "Update_Form_Data":
+      return {
+        ...state,
+        formData: {
+          ...state.formData,
+          [action.field]: action.value,
+        },
+      };
+
     case "Reset_Form":
       return { ...state, formData: initialState };
 

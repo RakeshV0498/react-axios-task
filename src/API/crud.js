@@ -44,3 +44,13 @@ export const deleteUser = async (userId) => {
     throw error;
   }
 };
+
+export const readUserData = async (userId) => {
+  try {
+    const response = await axios.get(`${url}${userId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting data:", error);
+    throw error;
+  }
+};

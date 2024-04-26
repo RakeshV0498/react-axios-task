@@ -1,13 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-refresh/only-export-components */
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button, Container, Form, InputGroup } from "react-bootstrap";
 
-import { createUser, readAllData } from "../API/crud";
+import { createUser, editUser, readAllData, readUserData } from "../API/crud";
 import { userContext } from "../Context/Context";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const UserForm = () => {
+  const [searchParams] = useSearchParams();
+  const [initialUserData, setInitialUserData] = useState(null);
+
   const {
     state: { formData },
     dispatch,
@@ -15,27 +18,58 @@ const UserForm = () => {
 
   const navigate = useNavigate();
 
+  const editMode = searchParams.get("edit") === "true";
+  const userId = searchParams.get("userID");
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userData = await readUserData(userId);
+        console.log(userData);
+        setInitialUserData(userData);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+    fetchUserData();
+  }, [userId]);
+
+  useEffect(() => {
+    if (initialUserData) {
+      console.log(initialUserData);
+      dispatch({ type: "Set_Form_Data", formData: initialUserData });
+    }
+  }, [initialUserData]);
+
   const handleChange = (field, value) => {
     dispatch({ type: "Add_New_User", field, value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      const result = await createUser(formData);
-      console.log("Data Posted successfully:", result);
-      const newData = await readAllData();
-      dispatch({
-        type: "FETCH_USERS_SUCCESS",
-        payload: newData,
-      });
-    } catch (error) {
-      console.error("Failed to post data:", error);
+    if (editMode) {
+      try {
+        const response = await editUser(userId, formData);
+        console.log(response);
+      } catch (error) {
+        console.error("Failed to update data:", error);
+      }
+    } else {
+      try {
+        const result = await createUser(formData);
+        console.log("Data Posted successfully:", result);
+      } catch (error) {
+        console.error("Failed to post data:", error);
+      }
     }
-
+    const newData = await readAllData();
+    dispatch({
+      type: "FETCH_USERS_SUCCESS",
+      payload: newData,
+    });
     dispatch({ type: "Reset_Form" });
     navigate("/");
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -47,7 +81,10 @@ const UserForm = () => {
           payload: users,
         });
       } catch (error) {
-        dispatch({ type: "FETCH_USERS_ERROR", payload: error });
+        dispatch({
+          type: "FETCH_USERS_ERROR",
+          payload: error,
+        });
       }
     };
     fetchData();
@@ -129,7 +166,7 @@ const UserForm = () => {
             />
           </Form.Group>
           <Button variant="primary" type="submit">
-            Create
+            {searchParams.get("edit") ? "Update" : "Create"}
           </Button>
         </Form>
       </Container>
