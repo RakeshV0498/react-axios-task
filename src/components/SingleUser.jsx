@@ -9,8 +9,22 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { IoMailOpenSharp } from "react-icons/io5";
+import { deleteUser } from "../API/crud";
 
 const SingleUser = ({ user }) => {
+  const handleDelete = async (userId) => {
+    try {
+      await deleteUser(userId);
+      alert(`Deleted ${user.name} from the portal`);
+      console.log("User Deleted successfully");
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
+    window.location.reload();
+  };
+
+  console.log(user);
+
   return (
     <>
       <Card className="user-card">
@@ -56,7 +70,9 @@ const SingleUser = ({ user }) => {
         </Card.Body>
         <Card.Body className="btn-container">
           <Button variant="primary">Edit</Button>
-          <Button variant="danger">Delete</Button>
+          <Button variant="danger" onClick={() => handleDelete(user.id)}>
+            Delete
+          </Button>
         </Card.Body>
       </Card>
     </>

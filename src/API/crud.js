@@ -22,3 +22,25 @@ export const createUser = async (data) => {
     throw error;
   }
 };
+
+export const editUser = async (userId, data) => {
+  try {
+    const userUrl = `${url}${userId}`;
+    const response = await axios.put(userUrl, data);
+    return response.data;
+  } catch (error) {
+    console.error("Error posting data:", error);
+    throw error;
+  }
+};
+
+export const deleteUser = async (userId) => {
+  const deleteUrl = `${url}${userId}`;
+  try {
+    const response = await axios.delete(deleteUrl);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting data:", error);
+    throw error;
+  }
+};
