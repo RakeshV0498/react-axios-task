@@ -1,9 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { Button, Container, Form, InputGroup } from "react-bootstrap";
 import { handleUser, initialState } from "../Context/Reducer";
-
-export const formData = initialState;
+import { createUser, readAllData } from "../API/crud";
 
 const UserForm = () => {
   const [formData, dispatch] = useReducer(handleUser, initialState);
@@ -12,9 +11,39 @@ const UserForm = () => {
     dispatch({ type: "Add_New_User", field, value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formData);
+    try {
+      const result = await createUser(formData);
+      console.log("Data Posted successfully:", result);
+      const newData = await readAllData();
+      console.log(newData);
+      dispatch({
+        type: "FETCH_USERS_SUCCESS",
+        payload: newData,
+      });
+    } catch (error) {
+      console.error("Failed to post data:", error);
+    }
+
+    dispatch({ type: "Reset_Form" });
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const users = await readAllData();
+        dispatch({
+          type: "FETCH_USERS_SUCCESS",
+          payload: users,
+        });
+      } catch (error) {
+        dispatch({ type: "FETCH_USERS_ERROR", payload: error });
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <>

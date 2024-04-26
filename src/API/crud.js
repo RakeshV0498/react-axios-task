@@ -12,10 +12,15 @@ export const readAllData = async () => {
   }
 };
 
-// readAllData()
-//   .then((data) => {
-//     console.log(data);
-//   })
-//   .catch((error) => {
-//     console.error(error);
-//   });
+export const createUser = async (data) => {
+  try {
+    const response = await axios.post(
+      "https://jsonplaceholder.typicode.com/users",
+      data
+    );
+    return response.data; // Assuming the API returns the created data
+  } catch (error) {
+    console.error("Error posting data:", error);
+    throw error;
+  }
+};

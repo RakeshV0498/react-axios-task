@@ -43,6 +43,10 @@ export const handleUser = (state, action) => {
         ...state,
         [action.field]: action.value,
       };
+
+    case "Reset_Form":
+      return initialState;
+
     default:
       return state;
   }
