@@ -100,6 +100,7 @@ const UserForm = () => {
               type="text"
               placeholder="Please Enter Your Full Name"
               value={formData.name || ""}
+              required
               onChange={(e) => handleChange("name", e.target.value)}
             />
           </Form.Group>
@@ -108,6 +109,7 @@ const UserForm = () => {
             <Form.Control
               type="text"
               placeholder="Please Enter Your user name"
+              required
               value={formData.username || ""}
               onChange={(e) => handleChange("username", e.target.value)}
             />
@@ -117,6 +119,7 @@ const UserForm = () => {
             <Form.Control
               type="email"
               placeholder="name@example.com"
+              required
               value={formData.email || ""}
               onChange={(e) => handleChange("email", e.target.value)}
             />
@@ -128,6 +131,7 @@ const UserForm = () => {
                 placeholder="street"
                 aria-label="street"
                 id="user-address-street"
+                required
                 value={formData.street || ""}
                 onChange={(e) => handleChange("street", e.target.value)}
               />
@@ -135,6 +139,7 @@ const UserForm = () => {
                 placeholder="city"
                 aria-label="city"
                 id="user-address-city"
+                required
                 value={formData.city || ""}
                 onChange={(e) => handleChange("city", e.target.value)}
               />
@@ -142,6 +147,7 @@ const UserForm = () => {
                 placeholder="zip-code"
                 aria-label="zip-code"
                 id="user-address-zip"
+                required
                 value={formData.zipcode || ""}
                 onChange={(e) => handleChange("zipcode", e.target.value)}
               />
@@ -152,6 +158,7 @@ const UserForm = () => {
             <Form.Control
               type="text"
               placeholder="555-555-0121"
+              required
               value={formData.phone || ""}
               onChange={(e) => handleChange("phone", e.target.value)}
             />
@@ -161,6 +168,7 @@ const UserForm = () => {
             <Form.Control
               type="text"
               placeholder="www.abc.com"
+              required
               value={formData.website || ""}
               onChange={(e) => handleChange("website", e.target.value)}
             />
