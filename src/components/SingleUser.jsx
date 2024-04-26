@@ -9,9 +9,19 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { IoMailOpenSharp } from "react-icons/io5";
-import { deleteUser } from "../API/crud";
+import { deleteUser, editUser } from "../API/crud";
 
 const SingleUser = ({ user }) => {
+  const handleEdit = async (userId) => {
+    try {
+      const response = await editUser(userId, { name: "Rakesh" });
+      console.log(response);
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
+    window.location.reload();
+  };
+
   const handleDelete = async (userId) => {
     try {
       await deleteUser(userId);
@@ -22,8 +32,6 @@ const SingleUser = ({ user }) => {
     }
     window.location.reload();
   };
-
-  console.log(user);
 
   return (
     <>
@@ -69,7 +77,14 @@ const SingleUser = ({ user }) => {
           </Card.Link>
         </Card.Body>
         <Card.Body className="btn-container">
-          <Button variant="primary">Edit</Button>
+          <Button
+            variant="primary"
+            onClick={() => {
+              handleEdit(user.id);
+            }}
+          >
+            Edit
+          </Button>
           <Button variant="danger" onClick={() => handleDelete(user.id)}>
             Delete
           </Button>
