@@ -51,6 +51,7 @@ const UserForm = () => {
       try {
         const response = await editUser(userId, formData);
         console.log(response);
+        alert(`${response.name} has beeen updated`);
       } catch (error) {
         console.error("Failed to update data:", error);
       }
@@ -58,6 +59,7 @@ const UserForm = () => {
       try {
         const result = await createUser(formData);
         console.log("Data Posted successfully:", result);
+        alert(`${result.name} has been created`);
       } catch (error) {
         console.error("Failed to post data:", error);
       }
@@ -69,7 +71,6 @@ const UserForm = () => {
     });
     dispatch({ type: "Reset_Form" });
     navigate("/");
-    window.location.reload();
   };
 
   useEffect(() => {
