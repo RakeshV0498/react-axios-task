@@ -27,6 +27,13 @@
   .user-container {
     grid-template-columns: 1fr;
   }
+  .input-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .input-group > input {
+    width: 100% !important;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 991.98px) {
