@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Button, Card, ListGroup } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { CiLocationOn, CiMobile3 } from "react-icons/ci";
 import {
   FaAddressCard,
@@ -39,28 +39,35 @@ const SingleUser = ({ user }) => {
             {user.email}
           </Card.Text>
         </Card.Body>
-        <ListGroup style={{ padding: "15px", margin: "10px" }}>
-          <ListGroup.displayName>
+        <Card.Body
+          style={{
+            padding: "15px",
+            margin: "10px",
+            border: "2px solid #ccc",
+            borderRadius: "6px",
+          }}
+        >
+          <Card.Title style={{ marginBottom: "10px" }}>
             <FaAddressCard fontSize="40px" style={{ marginRight: "10px" }} />{" "}
             <strong>Address</strong>
-          </ListGroup.displayName>
-          <ListGroup.Item>
+          </Card.Title>
+          <Card.Text>
             <FaStreetView fontSize="20px" style={{ marginRight: "10px" }} />
             {user.street}
-          </ListGroup.Item>
-          <ListGroup.Item>
+          </Card.Text>
+          <Card.Text>
             <FaCity fontSize="20px" style={{ marginRight: "10px" }} />
             {user.city}
-          </ListGroup.Item>
-          <ListGroup.Item>
+          </Card.Text>
+          <Card.Text>
             <CiLocationOn fontSize="20px" style={{ marginRight: "10px" }} />
             {user.zipcode}
-          </ListGroup.Item>
-          <ListGroup.Item>
+          </Card.Text>
+          <Card.Text>
             <CiMobile3 fontSize="20px" style={{ marginRight: "10px" }} />
             {user.phone}
-          </ListGroup.Item>
-        </ListGroup>
+          </Card.Text>
+        </Card.Body>
         <Card.Body>
           <Card.Link href={user.website}>
             {" "}
