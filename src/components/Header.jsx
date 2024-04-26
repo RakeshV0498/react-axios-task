@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
-      <Navbar bg="light" data-bs-theme="light">
+      <Navbar bg="light" data-bs-theme="light" sticky="top">
         <Container>
           <Navbar.Brand>
             <Link to="/">Admin Pod</Link>
